@@ -12,3 +12,13 @@ The orchestration and data processing components (Airflow and Spark) are run loc
   - Extract exchange rates from a **public API**.
   - Extract stock sector and details from a local **CSV file**.
   - Load the extracted data to Google Cloud Storage as raw files (CSV).
+- Data Transformation:
+  - Use **PySpark** (running locally in Docker) to clean and process data (e.g., merging and renaming columns).
+  - Compute stock technical metrics, such as SMA (Simple Moving Average) and RSI (Relative Strength Index).
+- Data Storage:
+  - Save the processed data as **Parquet** files in **Google Cloud Storage**.
+  - Load data into **BigQuery** for analysis.
+- Visualization:
+  - Build a dashboard in **Looker Studio** to analyze stock trends and fundamental trends, including revenue and gross profit.
+- Orchestration:
+  - Use Apache Airflow (running locally in Docker) to automate the pipeline and monitor tasks.
