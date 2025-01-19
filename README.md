@@ -35,25 +35,25 @@ The orchestration and data processing components (Airflow and Spark) are run loc
 ## Pipeline Architecture
 - Step in the stock price Pipeline
   1. Extract:
-    - Extract stock prices from **MongoDB**(using MongoHook), stock sectors from a CSV file, and exchange rates from a public API.
-    - Store raw data in Google **Cloud Storage**.
+      - Extract stock prices from **MongoDB**(using MongoHook), stock sectors from a CSV file, and exchange rates from a public API.
+      - Store raw data in Google **Cloud Storage**.
   2. Transform:
-    - Use PySpark to process the raw data (using the SparkSubmitOperator):
-      - Clean the data by fixing dates, reformatting, renaming columns, and selecting useful columns.
-      - Merge stock prices with sectors and drop unnecessary columns.
-      - Compute the Simple Moving Average (SMA) and Relative Strength Index (RSI), and drop any preparation columns.
-      - Save processed data to Google Cloud Storage in Parquet format.
+      - Use PySpark to process the raw data (using the SparkSubmitOperator):
+        - Clean the data by fixing dates, reformatting, renaming columns, and selecting useful columns.
+        - Merge stock prices with sectors and drop unnecessary columns.
+        - Compute the Simple Moving Average (SMA) and Relative Strength Index (RSI), and drop any preparation columns.
+        - Save processed data to Google Cloud Storage in Parquet format.
   3. Load:
-      - Load data from Parquet files into **BigQuery** for visualization using the **GCStoBigQueryOperator**.
+        - Load data from Parquet files into **BigQuery** for visualization using the **GCStoBigQueryOperator**.
   ![Stock Price Pipeline](images/stock_price_pipeline.png)
 
 - Step in the stock fund Pipeline
   1. Extract:
-    - Extract stock funds from **MongoDB** (using MongoHook) and stock sectors from a CSV file. Store the raw data in **Google Cloud Storage**.
+      - Extract stock funds from **MongoDB** (using MongoHook) and stock sectors from a CSV file. Store the raw data in **Google Cloud Storage**.
   2. Transform:
-    - Clean the data by fixing dates, reformatting, renaming columns, and selecting useful columns.
-    - Merge stock prices with sectors and drop unnecessary columns.
-    - Save processed data to Google Cloud Storage in Parquet format.
+      - Clean the data by fixing dates, reformatting, renaming columns, and selecting useful columns.
+      - Merge stock prices with sectors and drop unnecessary columns.
+      - Save processed data to Google Cloud Storage in Parquet format.
   3. Load:
-    - Load data from Parquet files into **BigQuery** for visualization using the **GCStoBigQueryOperator**.
+      - Load data from Parquet files into **BigQuery** for visualization using the **GCStoBigQueryOperator**.
   ![Stock Price Pipeline](images/stock_fund_pipeline.png)
