@@ -1,1 +1,1 @@
-# stock-pipeline-airflow-spark-gcp-de
+# Stock Pipeline: Airflow(Local) + Spark(Local) + GCP for Data Engineering
