@@ -1,0 +1,55 @@
+services:
+
+  spark-master:
+    image: bitnami/spark:latest
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - SPARK_MASTER_WEBUI_PORT=8081
+      - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/keys/gcp_key.json
+      - SPARK_DAEMON_JAVA_OPTS=-Dspark.hadoop.google.cloud.auth.service.account.enable=true
+      - SPARK_DRIVER_JAVA_OPTS=-Dspark.hadoop.google.cloud.auth.service.account.json.keyfile=/opt/airflow/keys/gcp_key.json
+    ports:
+      - "8081:8081"
+      - "7077:7077"
+    volumes:
+      - spark-data:/bitnami
+      - ./include:/opt/airflow/include
+      - ./keys:/opt/airflow/keys
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
+      - ./jars/gcs-connector-hadoop3-latest.jar:/opt/spark/jars/gcs-connector-hadoop3-latest.jar
+    networks:
+      - default
+
+  spark-worker:
+    image: bitnami/spark:latest
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=2
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/keys/gcp_key.json
+      - SPARK_DAEMON_JAVA_OPTS=-Dspark.hadoop.google.cloud.auth.service.account.enable=true
+      - SPARK_DRIVER_JAVA_OPTS=-Dspark.hadoop.google.cloud.auth.service.account.json.keyfile=/opt/airflow/keys/gcp_key.json
+    volumes:
+      - ./include:/opt/airflow/include
+      - ./keys:/opt/airflow/keys
+      - spark-data:/bitnami
+      - ./apps:/opt/spark-apps
+      - ./data:/opt/spark-data
+      - ./jars/gcs-connector-hadoop3-latest.jar:/opt/spark/jars/gcs-connector-hadoop3-latest.jar
+    depends_on:
+      - spark-master
+    networks:
+      - default
+      
+volumes:
+  spark-data:

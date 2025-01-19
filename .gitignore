@@ -1,0 +1,26 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore environment files
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Ignore editor-specific temporary files
+*~
+*.swp
+.DS_Store
+
+# Ignore logs
+logs/
+*.log
+
+# airflow local
+logs
+tmp
+keys
+jars
+airflow.env.txt
