@@ -13,6 +13,7 @@ The orchestration and data processing components (Airflow and Spark) are run loc
 4. Containerization: Docker
 5. Visualization: Looker Studio
 6. Data Source: MongoDB, CSV, and APIs
+![Data Engineering Architecture](images/de-architecture-diagram.png)
 
 ## Key Features of Project
 - Data Extraction:
