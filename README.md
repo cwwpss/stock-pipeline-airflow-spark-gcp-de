@@ -6,6 +6,14 @@ This project demonstrates a complete Data Engineering Pipeline for processing hi
 It incorporates **Airflow** for orchestration, **PySpark** for data processing, and integrates with **Google Cloud Platform (GCP)** services such as **Google Cloud Storage (GCS)** and **BigQuery**.
 The orchestration and data processing components (Airflow and Spark) are run locally using **Docker**.
 
+## Tech stack of Project
+1. Orchestration: Apache Airflow (local with Docker)
+2. Data Processing: PySpark (local with Docker)
+3. Cloud Services: Google Cloud Storage (GCS), BigQuery
+4. Containerization: Docker
+5. Visualization: Looker Studio
+6. Data Source: MongoDB, CSV, and APIs
+
 ## Key Features of Project
 - Data Extraction:
   - Extract stock prices and stock fundamentals from **MongoDB**.
