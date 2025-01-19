@@ -29,6 +29,7 @@ The orchestration and data processing components (Airflow and Spark) are run loc
   - Load data into **BigQuery** for analysis.
 - Visualization:
   - Build a dashboard in **Looker Studio** to analyze stock trends and fundamental trends, including revenue and gross profit.
+  - Access the live dashboard here: [Looker Studio Dashboard](https://lookerstudio.google.com/reporting/bdbaa23a-ea17-4191-b641-5bb3315c3246).
 - Orchestration:
   - Use Apache Airflow (running locally in Docker) to automate the pipeline and monitor tasks.
  
