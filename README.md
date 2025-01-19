@@ -1,4 +1,5 @@
 # Stock Pipeline: Airflow(Local) + Spark(Local) + GCP for Data Engineering
+Chawalwit P.
 
 ## Overview of Project
 This project demonstrates a complete Data Engineering Pipeline for processing historical stock and fundamental data.
